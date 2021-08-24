@@ -10,7 +10,7 @@ bstSplitting = R6Class("bstSplitting",
    },
    train = function(verbose=1){
      enriched = (private$training) %>% (private$enrichTrainingData)
-     private$model <- xgboost::xgb.train(data = enriched, booster = "gbtree", max.depth = 2, eta = 0.6, nthread = 4, nrounds = 6, objective = "reg:linear",verbose = verbose)
+     private$model <- xgboost::xgb.train(data = enriched, booster = "gbtree", max.depth = 2, eta = 0.6, nthread = 4, nrounds = 6, objective = "reg:squarederror",verbose = verbose)
      invisible(self)
    },
    predict = function(newdata){
@@ -53,7 +53,7 @@ lbsSplitting = R6Class("lbsSplitting",
    },
    train = function(verbose=0){
      enriched = (private$training) %>% (private$enrichTrainingData)
-     private$model <- xgboost::xgb.train(data = enriched, booster = "gblinear", nthread = 4, nrounds = 6, objective = "reg:linear",verbose = verbose)
+     private$model <- xgboost::xgb.train(data = enriched, booster = "gblinear", nthread = 4, nrounds = 6, objective = "reg:squarederror",verbose = verbose)
      invisible(self)
    },
    predict = function(newdata){
